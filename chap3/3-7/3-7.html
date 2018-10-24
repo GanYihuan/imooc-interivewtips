@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Event</title>
+  <style>
+    #ev{
+      width: 300px;
+      height: 100px;
+      background: red;
+      color: #fff;
+      text-align: center;
+      line-height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="ev">
+    目标元素
+  </div>
+  <script type="text/javascript">
+    var ev = document.getElementById('ev');
+
+    ev.addEventListener('click', function (e) {
+      console.log('ev captrue');
+    }, true); // true: 捕获阶段触发, false: 冒泡阶段触发
+
+    window.addEventListener('click', function (e) {
+      console.log('window captrue');
+    }, true);
+
+    document.addEventListener('click', function (e) {
+      console.log('document captrue');
+    }, true);
+
+    document.documentElement.addEventListener('click', function (e) {
+      console.log('html captrue');
+    }, true);
+
+    document.body.addEventListener('click', function (e) {
+      console.log('body captrue');
+    }, true);
+
+    /* 自定义事件 */
+    var eve = new Event('test');
+    ev.addEventListener('test', function () {
+      console.log('test dispatch');
+    });
+    setTimeout(function () {
+      ev.dispatchEvent(eve);
+    }, 1000);
+    /*
+    test dispatch
+    window captrue
+    document captrue
+    html captrue
+    body captrue
+    ev captrue
+    */
+  </script>
+</body>
+</html>

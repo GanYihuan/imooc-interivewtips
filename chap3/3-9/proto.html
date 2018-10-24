@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>原型链</title>
+</head>
+<body>
+  <script type="text/javascript">
+    // o1 o2 M o3: 实例
+    // new XXX(): XXX 是构造函数, 构造函数通过 new 生成实例
+    // 第一种方式：字面量
+    var o1 = { name: 'o1' };
+    var o2 = new Object({ name: 'o2' });
+
+    // 第二种方式：构造函数
+    var M = function (name) { this.name = name; };
+    // chrome: **03.png**
+    // __proto__: 向上查找 object.prototype 是顶端
+    // M.prototype.constructor === M // true
+    // o3.__proto__ === M.prototype // true
+    var o3 = new M('o3');
+    // 03 instanceof Object // true
+    // M.prototype.__proto__ === Object.prototype // true
+
+    // 第三种方式：Object.create
+    var p = { name: 'p' };
+    var o4 = Object.create(p);
+    // o4.__proto__ === p // true
+
+    M.prototype.say = function () {
+      console.log('say hi');
+    };
+    var o5 = new M('o5');
+    // o3.say() // say hi
+    // o5.say() // say hi
+
+    // new 工作原理
+    var new2 = function (func) {
+      // 生成新对象, 继承构造函数原型对象
+      var o = Object.create(func.prototype);
+      // 执行构造函数, call 转义上下文为 o 对象
+      var k = func.call(o);
+      if (typeof k === 'object') {
+        return k;
+      } else {
+        return o;
+      }
+    };
+  </script>
+</body>
+</html>
