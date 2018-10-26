@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>性能优化</title>
+</head>
+<body>
   <!-- 
   <script src="./defer1.js" charset="utf-8" defer></script>
   <script src="./defer2.js" charset="utf-8" defer></script> 
   -->
   <script src="./async1.js" charset="utf-8" async></script>
   <script src="./async2.js" charset="utf-8" async></script>
-</head>
-<body>
   <div class="">
     test
     <script type="text/javascript">
@@ -25,5 +25,8 @@
       }
     </script>
   </div>
+  <!-- 
+    当文件足够大时, async 输出顺序不确定, defer 是按照顺序加载
+   -->
 </body>
 </html>

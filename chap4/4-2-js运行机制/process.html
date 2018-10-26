@@ -5,45 +5,47 @@
   <title>js 运行机制</title>
 </head>
 <body>
-  <script type="text/javascript">
-    /*
-    JS 单线程: 一个时间内只做一件事
-    异步任务: setTimeout, setInterval
-    任务队列: 同步队列, 异步队列, 异步任务放入异步队列时机
-    Event Loop
-    */
+<script type="text/javascript">
+  /*
+  JS 单线程: 一个时间内只做一件事
+  异步任务: setTimeout, setInterval
+  任务队列: 同步队列, 异步队列, 异步任务放入异步队列时机
+  Event Loop
+  */
 
-    /* result: 1, 3, 4, 2 */
-    // console.log(1);
-    /* 异步任务 */
-    /* < 4ms 按照 4ms 算, 0 不是 0 而是 4 */
-    // setTimeout(function () {
-    //   console.log(2);
-    // }, 0);
-    // console.log(3);
-    // console.log(4);
+  /* result: 1, 3, 4, 2 */
+  // console.log(1);
+  /* 异步任务 */
+  /* < 4ms 按照 4ms 算, 0 不是 0 而是 4 */
+  // setTimeout(function () {
+  //   console.log(2);
+  // }, 0);
+  // console.log(3);
+  // console.log(4);
 
-    /* result: A */
-    // console.log('A')
-    // while(true) {}
-    // console.log('B')
+  /* result: A */
+  // console.log('A')
+  /* 一直循环停在这里不会执行下面 */
+  // while(true) {}
+  // console.log('B')
 
-    /* 先执行同步，完了后执行异步 */
-    /* result: A */
-    // console.log('A');
-    // setTimeout(function () {
-    //   console.log('B');
-    // }, 0);
-    // while (1) {}
+  /* 先执行同步，完了后执行异步 */
+  /* result: A */
+  // console.log('A');
+  // setTimeout(function () {
+  //   console.log('B');
+  // }, 0);
+  /* 一直循环停在这里不会执行异步队列 */
+  // while (1) {}
 
-    /* 异步任务放入异步队列时机 */
-    /* result: 4, 4, 4, 4 */
-    /* for 里的 i 执行完了 i=4 ，定时器才开始加 setTimeout 到异步队列 */
-    for (var i = 0; i < 4; i++) {
-      setTimeout(function () {
-        console.log(i);
-      }, 0);
-    }
-  </script>
+  /* 异步任务放入异步队列时机 */
+  /* result: 4, 4, 4, 4 */
+  /* for 里的 i 执行完了 i=4 ，定时器才开始加 setTimeout 到异步队列 */
+  for (var i = 0; i < 4; i++) {
+    setTimeout(function () {
+      console.log(i);
+    }, 0);
+  }
+</script>
 </body>
 </html>

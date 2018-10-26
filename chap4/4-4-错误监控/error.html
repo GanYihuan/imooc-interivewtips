@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>错误监控</title>
+</head>
+<body>
   <script type="text/javascript">
     // true: 捕获, false: 冒泡
     window.addEventListener('error', function (e) {
       console.log('捕获', e);
     }, false);
   </script>
-</head>
-<body>
   <!-- Image 上报 -->
   <script src="//badu.com/test.js" charset="utf-8"></script>
   <script type="text/javascript">
