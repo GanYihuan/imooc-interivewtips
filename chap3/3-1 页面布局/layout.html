@@ -86,7 +86,7 @@
       <div class="center">
         <h2>绝对定位解决方案</h2>
         1.这是三栏布局的绝对定位解决方案；
-        <!-- <p>增加高度 出问题！</p>
+        <!-- <p>增加高度出问题</p>
         <p>增加高度</p>
         <p>增加高度</p>
         <p>增加高度</p>
@@ -97,28 +97,28 @@
   </section>
 
 
-  <!-- flexbox 布局: 不兼容 IE -->
-  <section class="layout flexbox">
+  <!-- flex-box 布局: 不兼容低版本 IE -->
+  <section class="layout flex-box">
     <style>
-      .layout.flexbox {
+      .layout.flex-box {
         margin-top: 110px;
       }
 
-      .layout.flexbox .left-center-right {
+      .layout.flex-box .left-center-right {
         display: flex;
       }
 
-      .layout.flexbox .left {
+      .layout.flex-box .left {
         width: 300px;
         background: red;
       }
 
-      .layout.flexbox .center {
+      .layout.flex-box .center {
         flex: 1;
         background: yellow;
       }
 
-      .layout.flexbox .right {
+      .layout.flex-box .right {
         width: 300px;
         background: blue;
       }
@@ -127,7 +127,7 @@
     <article class="left-center-right">
       <div class="left"></div>
       <div class="center">
-        <h2>flexbox 解决方案</h2>
+        <h2>flex-box 解决方案</h2>
         1.这是三栏布局的 flexbox 解决方案；
         <p>增加高度</p>
         <p>增加高度</p>
@@ -140,7 +140,7 @@
   </section>
 
 
-  <!-- 表格布局: 兼容性强, seo 差 -->
+  <!-- 表格布局: 兼容性强, seo 差, 历史问题多 -->
   <section class="layout table">
     <style>
       .layout.table .left-center-right {
@@ -211,7 +211,7 @@
       <div class="center">
         <h2>网格布局解决方案</h2>
         1.这是三栏布局的网格布局解决方案；
-        <!-- <p>增加高度 出问题！</p>
+        <!-- <p>增加高度出问题</p>
         <p>增加高度</p>
         <p>增加高度</p>
         <p>增加高度</p>
