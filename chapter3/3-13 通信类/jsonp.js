@@ -124,7 +124,7 @@ util.jsonp = function(url, onsuccess, onerror, charset) {
 			onerror()
 		}
   }
-  // 6. 发送请求
+  // 6. 增加 script 标签, 目的是发送请求
 	document.getElementsByTagName('head')[0].appendChild(script)
 }
 

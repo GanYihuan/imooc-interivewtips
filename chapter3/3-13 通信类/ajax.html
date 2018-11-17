@@ -6,9 +6,10 @@
 </head>
 <body>
   <script type="text/javascript">
-    // 创建ajax【参考网址】https://segmentfault.com/a/1190000006669043
+    // 创建 ajax【参考网址】https://segmentfault.com/a/1190000006669043
     // 参考jsonp.js
   </script>
+
   <!-- callback=jsonp: 回调名 -->
   <script src="http://www.abc.com/?data=name&callback=jsonp" charset="utf-8"></script>
   <!-- 服务器 -->
@@ -19,6 +20,7 @@
     //     },
     // });
   </script>
+
   <script type="text/javascript">
     /**
      * 跨域通信的几种方法
@@ -29,9 +31,11 @@
      * 5. CORS [参考资料](http://www.ruanyifeng.com/blog/2016/04/cors.html)
      */
 
+
     /**
      * jsonp 实现, 参考 jsonp.js
      */
+
 
     /**
      * hash 实现: 在 A 中伪代码如下
@@ -45,6 +49,7 @@
       var data = window.location.hash;
     };
 
+
     /**
      * postMessage 实现 
      */
@@ -56,6 +61,7 @@
       console.log(event.source); // 引用 A 窗口对象
       console.log(event.data); // 拿数据
     }, false);
+
 
     /**
      * Websocket 实现
@@ -73,6 +79,7 @@
     ws.onclose = function (evt) {
       console.log('Connection closed.');
     };
+
 
     /**
      * CORS 实现
