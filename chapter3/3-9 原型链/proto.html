@@ -31,7 +31,7 @@
     // 第三种方式：Object.create
     var p = { name: 'p' };
     var o4 = Object.create(p); // Object {}
-    // Object.create: 将参数对象先对象原型对象赋值给 o4, 再通过原型链连接
+    // Object.create: 将参数对象作为原型对象赋值给 o4, 再通过原型链连接
     // o4 本身拿不到 name 属性
     // o4.__proto__ === p // true
     // o4.__proto__ === 构造函数 prototype, o4 通过原型链找到 name 对象
