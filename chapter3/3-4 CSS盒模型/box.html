@@ -8,6 +8,12 @@
       margin: 0;
       padding: 0;
     }
+
+    .gap {
+      width: 100%;
+      height: 50px;
+      background: #fff;
+    }
   </style>
 </head>
 <body>
@@ -15,6 +21,7 @@
     <style media="screen">
       #sec {
         background: #f00;
+        /* overflow: hidden; */
       }
 
       .child {
@@ -25,16 +32,19 @@
     </style>
     <article class="child"></article>
   </section>
+
+  <div class="gap"></div>
+
   <!-- 
-  创建 BFC: 
-  float !== none
+  概念: 块级格式化上下文
+  创建 BFC: dpof
   display: inline-block, table-cell
   position !== static, relative
   overflow !== visible
+  float !== none
   -->
-
   <!-- BFC 取消垂直方向边距重叠 -->
-  <!-- 边距重叠: 2 下边距 25px, 3 上边距 5px, 实际取 25px -->
+  <!-- 边距重叠: p-2 下边距 20px, p-3 上边距 10px, 实际取 20px -->
   <section id="margin">
     <style>
       #margin {
@@ -44,41 +54,47 @@
       }
 
       #margin>p {
-        margin: 5px auto 25px;
+        margin: 10px auto 20px;
         background: red;
       }
     </style>
     <p>1</p>
-    <!-- 增加父元素, 设置为 BFC 取消垂直方向边距重叠 -->
+    <!-- 增加父元素, 设置为 BFC, 取消垂直方向边距重叠 -->
     <div style="overflow:hidden">
       <p>2</p>
     </div>
     <p>3</p>
   </section>
 
-  <!-- BFC 布局, 不与 float 重叠 -->
+  <div class="gap"></div>
+
+  <!-- BFC 区域不与 float 元素重叠 -->
   <!-- float 重叠: .right 高出 .left 且没有浮动时, 会嵌入 .left 下面 -->
   <section id="layout">
     <style media="screen">
       #layout {
         background: red;
       }
+
       #layout .left {
         float: left;
         width: 100px;
         height: 100px;
         background: pink;
       }
+
       #layout .right {
-        height: 110px;
+        height: 120px;
         background: #ccc;
         /* 创建 BFC */
         overflow: auto;
       }
     </style>
-    <div class="left"></div>
-    <div class="right"></div>
+    <div class="left">left</div>
+    <div class="right">right</div>
   </section>
+
+  <div class="gap"></div>
 
   <!-- BFC 清除浮动, 子元素即使是 float 也会参与父级计算 -->
   <!-- 父级元素遭遇子级浮动时，不会算入子级内容，父级高度依然是 0 -->
@@ -89,6 +105,7 @@
         /* 创建 BFC */
         overflow: auto;
       }
+
       #float .float {
         float: left;
         font-size: 30px;
