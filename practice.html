@@ -1,55 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <script>
-    class A {
-      constructor() {
-        this.name = ''
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function A() {
+        this.name = 'A'
       }
-    }
-
-    function Parent1() {
-      this.name = ''
-    }
-    Parent1.prototype.say = function() {}
-    function child1() {
-      Parent1.call(this);
-      this.type = 'child1'
-    }
-
-    function Parent2() {
-      this.name = 'parent2',
-      this.play = [1, 2, 3]
-    }
-    function child2() {
-      Parent2.call(this)
-      this.type = 'child2'
-    }
-    // child2.prototype = new Parent2()
-    // child2.prototype = Parent2.prototype
-    child2.prototype = Object.create(Parent2.prototype)
-    child2.prototype.constructor = child2
-
-
-    function Parent3() {
-      this.name = 'parent3'
-      this.play = [1,2,3]
-    }
-    function child3() {
-      Parent3.call(this)
-      this.type = 'child3'
-    }
-    // child3.prototype = new Parent3()
-    // child3.prototype = Parent3.prototype
-    child3.prototype = Object.create(Parent3.prototype)
-    child3.prototype.constructor = child3
-
-  </script>
-</body>
+      function B() {
+        A.call(this)
+        this.type = 'B'
+      }
+      B.prototype = Object.create(A.prototype)
+      B.prototype.constructor = B
+    </script>
+  </body>
 </html>

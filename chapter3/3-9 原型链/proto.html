@@ -1,63 +1,62 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>原型链</title>
-</head>
-<body>
-  <script type="text/javascript">
-    // o1 o2 M o3: 实例
-    // new XXX(): XXX 是构造函数, 构造函数通过 new 生成实例
-    // 第一种方式: 字面量
-    var o1 = { name: 'o1' }; // Object {name: "o1"}
+  <head>
+    <meta charset="utf-8" />
+    <title>原型链</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // o1 o2 M o3: 实例
+      // new XXX(): XXX 是构造函数, 构造函数通过 new 生成实例
+      // 第一种方式: 字面量
+      var o1 = { name: 'o1' } // Object {name: "o1"}
 
-    // 第二种方式：构造函数
-    var o2 = new Object({ name: 'o2' }); // Object {name: "o2"}
-    var M = function (name) {
-      this.name = name;
-    };
-    var o3 = new M('o3'); // M {name: "o3"}
-    // chrome: **03.png**
-    // __proto__: 向上查找, object.prototype 是顶端
-    // M.prototype.constructor === M // true
-    // o3.__proto__ === M.prototype // true
-    // M.__proto__ === Function.prototype // true
-    // o3 instanceof Object // true
-    // M.prototype.__proto__ === Object.prototype // true
-    /* constructor 比 instanceof 更能区分 */
-    // o3.__proto__.constructor === M // true
-    // o3.__proto__.constructor === Object // false
-
-    // 第三种方式：Object.create
-    var p = { name: 'p' };
-    var o4 = Object.create(p); // Object {}
-    // Object.create: 将参数对象作为原型对象赋值给 o4, 再通过原型链连接
-    // o4 本身拿不到 name 属性
-    // o4.__proto__ === p // true
-    // o4.__proto__ === 构造函数 prototype, o4 通过原型链找到 name 对象
-
-    M.prototype.say = function () {
-      console.log('say hi');
-    };
-    var o5 = new M('o5');
-    o3.say() // say hi
-    o5.say() // say hi
-    // 通过原型链的方式找到原型对象上的方法是被不同实例共有
-
-    // new 工作原理
-    var new2 = function (func) {
-      // 生成新对象, 继承函数原型对象
-      var o = Object.create(func.prototype);
-      // 执行函数 func, 调用 call 转移上下文为 o 对象
-      var k = func.call(o);
-      // func 如果返回对象那么会取代 new 出来的结果，否则 new 结果为创建的对象
-      if (typeof k === 'object') {
-        return k;
-      } else {
-        return o;
+      // 第二种方式：构造函数
+      var o2 = new Object({ name: 'o2' }) // Object {name: "o2"}
+      var M = function(name) {
+        this.name = name
       }
-    };
-    var o6 = new2(M) // M
-  </script>
-</body>
+      var o3 = new M('o3') // M {name: "o3"}
+      // __proto__: 向上查找, object.prototype 是顶端
+      // M.prototype.constructor === M // true
+      // o3.__proto__ === M.prototype // true
+      // M.__proto__ === Function.prototype // true
+      // o3 instanceof Object // true
+      // M.prototype.__proto__ === Object.prototype // true
+      /* constructor 比 instanceof 更能区分 */
+      // o3.__proto__.constructor === M // true
+      // o3.__proto__.constructor === Object // false
+
+      // 第三种方式：Object.create
+      var p = { name: 'p' }
+      var o4 = Object.create(p) // Object {}
+      // Object.create: 将参数对象作为原型对象赋值给 o4, 再通过原型链连接
+      // o4 本身拿不到 name 属性
+      // o4.__proto__ === p // true
+      // o4.__proto__ === 构造函数 prototype, o4 通过原型链找到 name 对象
+
+      M.prototype.say = function() {
+        console.log('say hi')
+      }
+      var o5 = new M('o5')
+      o3.say() // say hi
+      o5.say() // say hi
+      // 通过原型链的方式找到原型对象上的方法是被不同实例共有
+
+      // new 工作原理
+      var new2 = function(func) {
+        // 生成新对象, 继承函数原型对象
+        var o = Object.create(func.prototype)
+        // 执行函数 func, 调用 call 转移上下文为 o 对象
+        var k = func.call(o)
+        // func 如果返回对象那么会取代 new 出来的结果，否则 new 结果为创建的对象
+        if (typeof k === 'object') {
+          return k
+        } else {
+          return o
+        }
+      }
+      var o6 = new2(M) // M
+    </script>
+  </body>
 </html>
