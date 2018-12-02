@@ -1,216 +1,216 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Layout</title>
-  <style media="screen">
-    html * {
-      padding: 0;
-      margin: 0;
-    }
-
-    .layout {
-      margin-top: 20px;
-    }
-
-    .layout article div {
-      min-height: 100px;
-    }
-  </style>
-</head>
-<body>
-  <!-- 浮动布局: 兼容性强, 脱离文档流, 浮动问题 -->
-  <section class="layout float">
+  <head>
+    <meta charset="utf-8" />
+    <title>Layout</title>
     <style media="screen">
-      .layout.float .left {
-        float: left;
-        width: 300px;
-        background: red;
+      html * {
+        padding: 0;
+        margin: 0;
       }
 
-      .layout.float .center {
-        background: yellow;
+      .layout {
+        margin-top: 20px;
       }
 
-      .layout.float .right {
-        float: right;
-        width: 300px;
-        background: blue;
+      .layout article div {
+        min-height: 100px;
       }
     </style>
-    <h1>三栏布局</h1>
-    <article class="left-right-center">
-      <div class="left"></div>
-      <div class="right"></div>
-      <div class="center">
-        <h2>浮动解决方案</h2>
-        1.这是三栏布局的浮动解决方案；
-        <p>增加高度 出问题！文字发现左侧没有浮动挡住时会靠左排列</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-      </div>
-    </article>
-  </section>
+  </head>
+  <body>
+    <!-- 浮动布局: 兼容性强, 脱离文档流, 浮动问题 -->
+    <section class="layout float">
+      <style media="screen">
+        .layout.float .left {
+          float: left;
+          width: 300px;
+          background: red;
+        }
 
-  <!-- 绝对布局: 脱离文档流, 子元素也脱离文档流, 使用性差 -->
-  <section class="layout absolute">
-    <style>
-      .layout.absolute .left-center-right>div {
-        position: absolute;
-      }
+        .layout.float .center {
+          background: yellow;
+        }
 
-      .layout.absolute .left {
-        left: 0;
-        width: 300px;
-        background: red;
-      }
+        .layout.float .right {
+          float: right;
+          width: 300px;
+          background: blue;
+        }
+      </style>
+      <h1>三栏布局</h1>
+      <article class="left-right-center">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="center">
+          <h2>浮动解决方案</h2>
+          1.这是三栏布局的浮动解决方案；
+          <p>增加高度 出问题！文字发现左侧没有浮动挡住时会靠左排列</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+        </div>
+      </article>
+    </section>
 
-      .layout.absolute .center {
-        left: 300px;
-        right: 300px;
-        background: yellow;
-      }
+    <!-- 绝对布局: 脱离文档流, 子元素也脱离文档流, 使用性差 -->
+    <section class="layout absolute">
+      <style>
+        .layout.absolute .left-center-right > div {
+          position: absolute;
+        }
 
-      .layout.absolute .right {
-        right: 0;
-        width: 300px;
-        background: blue;
-      }
-    </style>
-    <h1>三栏布局</h1>
-    <article class="left-center-right">
-      <div class="left"></div>
-      <div class="center">
-        <h2>绝对定位解决方案</h2>
-        1.这是三栏布局的绝对定位解决方案；
-        <p>增加高度出问题</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-      </div>
-      <div class="right"></div>
-    </article>
-  </section>
+        .layout.absolute .left {
+          left: 0;
+          width: 300px;
+          background: red;
+        }
 
-  <!-- flex-box 布局: 不兼容低版本 IE -->
-  <section class="layout flex-box">
-    <style>
-      .layout.flex-box {
-        margin-top: 110px;
-      }
+        .layout.absolute .center {
+          left: 300px;
+          right: 300px;
+          background: yellow;
+        }
 
-      .layout.flex-box .left-center-right {
-        display: flex;
-      }
+        .layout.absolute .right {
+          right: 0;
+          width: 300px;
+          background: blue;
+        }
+      </style>
+      <h1>三栏布局</h1>
+      <article class="left-center-right">
+        <div class="left"></div>
+        <div class="center">
+          <h2>绝对定位解决方案</h2>
+          1.这是三栏布局的绝对定位解决方案；
+          <p>增加高度出问题</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+        </div>
+        <div class="right"></div>
+      </article>
+    </section>
 
-      .layout.flex-box .left {
-        width: 300px;
-        background: red;
-      }
+    <!-- flex-box 布局: 不兼容低版本 IE -->
+    <section class="layout flex-box">
+      <style>
+        .layout.flex-box {
+          margin-top: 110px;
+        }
 
-      .layout.flex-box .center {
-        flex: 1;
-        background: yellow;
-      }
+        .layout.flex-box .left-center-right {
+          display: flex;
+        }
 
-      .layout.flex-box .right {
-        width: 300px;
-        background: blue;
-      }
-    </style>
-    <h1>三栏布局</h1>
-    <article class="left-center-right">
-      <div class="left"></div>
-      <div class="center">
-        <h2>flex-box 解决方案</h2>
-        1.这是三栏布局的 flexbox 解决方案；
-        <p>增加高度</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-      </div>
-      <div class="right"></div>
-    </article>
-  </section>
+        .layout.flex-box .left {
+          width: 300px;
+          background: red;
+        }
 
-  <!-- 表格布局: 兼容性强, seo 差, 历史问题多 -->
-  <section class="layout table">
-    <style>
-      .layout.table .left-center-right {
-        display: table;
-        width: 100%;
-        height: 100px;
-      }
+        .layout.flex-box .center {
+          flex: 1;
+          background: yellow;
+        }
 
-      .layout.table .left-center-right>div {
-        display: table-cell;
-      }
+        .layout.flex-box .right {
+          width: 300px;
+          background: blue;
+        }
+      </style>
+      <h1>三栏布局</h1>
+      <article class="left-center-right">
+        <div class="left"></div>
+        <div class="center">
+          <h2>flex-box 解决方案</h2>
+          1.这是三栏布局的 flexbox 解决方案；
+          <p>增加高度</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+        </div>
+        <div class="right"></div>
+      </article>
+    </section>
 
-      .layout.table .left {
-        width: 300px;
-        background: red;
-      }
+    <!-- 表格布局: 兼容性强, seo 差, 历史问题多 -->
+    <section class="layout table">
+      <style>
+        .layout.table .left-center-right {
+          display: table;
+          width: 100%;
+          height: 100px;
+        }
 
-      .layout.table .center {
-        background: yellow;
-      }
+        .layout.table .left-center-right > div {
+          display: table-cell;
+        }
 
-      .layout.table .right {
-        width: 300px;
-        background: blue;
-      }
-    </style>
-    <h1>三栏布局</h1>
-    <article class="left-center-right">
-      <div class="left"></div>
-      <div class="center">
-        <h2>表格布局解决方案</h2>
-        1.这是三栏布局的表格布局解决方案；
-        <p>增加高度</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-      </div>
-      <div class="right"></div>
-    </article>
-  </section>
+        .layout.table .left {
+          width: 300px;
+          background: red;
+        }
 
-  <!-- 网格布局: 新技术 -->
-  <section class="layout grid">
-    <style>
-      .layout.grid .left-center-right {
-        display: grid;
-        width: 100%;
-        grid-template-rows: 100px;
-        grid-template-columns: 300px auto 300px;
-      }
+        .layout.table .center {
+          background: yellow;
+        }
 
-      .layout.grid .left {
-        background: red;
-      }
+        .layout.table .right {
+          width: 300px;
+          background: blue;
+        }
+      </style>
+      <h1>三栏布局</h1>
+      <article class="left-center-right">
+        <div class="left"></div>
+        <div class="center">
+          <h2>表格布局解决方案</h2>
+          1.这是三栏布局的表格布局解决方案；
+          <p>增加高度</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+        </div>
+        <div class="right"></div>
+      </article>
+    </section>
 
-      .layout.grid .center {
-        background: yellow;
-      }
+    <!-- 网格布局: 新技术 -->
+    <section class="layout grid">
+      <style>
+        .layout.grid .left-center-right {
+          display: grid;
+          width: 100%;
+          grid-template-rows: 100px;
+          grid-template-columns: 300px auto 300px;
+        }
 
-      .layout.grid .right {
-        background: blue;
-      }
-    </style>
-    <h1>三栏布局</h1>
-    <article class="left-center-right">
-      <div class="left"></div>
-      <div class="center">
-        <h2>网格布局解决方案</h2>
-        1.这是三栏布局的网格布局解决方案；
-        <p>增加高度出问题</p>
-        <p>增加高度</p>
-        <p>增加高度</p>
-      </div>
-      <div class="right"></div>
-    </article>
-  </section>
-</body>
+        .layout.grid .left {
+          background: red;
+        }
+
+        .layout.grid .center {
+          background: yellow;
+        }
+
+        .layout.grid .right {
+          background: blue;
+        }
+      </style>
+      <h1>三栏布局</h1>
+      <article class="left-center-right">
+        <div class="left"></div>
+        <div class="center">
+          <h2>网格布局解决方案</h2>
+          1.这是三栏布局的网格布局解决方案；
+          <p>增加高度出问题</p>
+          <p>增加高度</p>
+          <p>增加高度</p>
+        </div>
+        <div class="right"></div>
+      </article>
+    </section>
+  </body>
 </html>
