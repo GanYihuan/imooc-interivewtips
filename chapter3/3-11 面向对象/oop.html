@@ -46,8 +46,8 @@
       s1.play.push(4)
       console.log(s1.play, s2.play) // 缺点: s2: [1,2,3,4] 受到 s1 影响 // true
       /* s1.__proto__ === s2.__proto__ */ /* 组合继承, 弥补上面缺点 */
-      
-      /* 组合继承, 弥补上面缺点 */       
+
+      /* 组合继承, 弥补上面缺点 */
       function Parent3() {
         this.name = 'parent3'
         this.play = [1, 2, 3]
@@ -89,10 +89,12 @@
         this.type = 'child5'
       }
       /* prototype: 构造函数的实例能访问到他的原型对象上 */
+      /* Object.create(): Child5.__proto__ === Parent5.prototype // true */
       Child5.prototype = Object.create(Parent5.prototype)
       /* 解决区分不了构造函数的问题 */
       Child5.prototype.constructor = Child5
       var s7 = new Child5()
+      /* instanceof: s7.__proto__ 是否等于 Child5 prototype */
       console.log(s7 instanceof Child5, s7 instanceof Parent5) // true true
       console.log(s7.constructor) // Child5()
     </script>

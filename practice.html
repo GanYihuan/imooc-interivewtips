@@ -8,15 +8,12 @@
   </head>
   <body>
     <script>
-      function A() {
-        this.name = 'A'
+      function Parent() {}
+      function Child() {
+        Parent.call(this)
       }
-      function B() {
-        A.call(this)
-        this.type = 'B'
-      }
-      B.prototype = Object.create(A.prototype)
-      B.prototype.constructor = B
+      Child.prototype = Object.create(Parent.prototype)
+      Child.prototype.constructor = Child
     </script>
   </body>
 </html>
