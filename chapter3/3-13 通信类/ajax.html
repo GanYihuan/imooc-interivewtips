@@ -7,16 +7,14 @@
 <body>
   <script type="text/javascript">
     // 创建 ajax【参考网址】https://segmentfault.com/a/1190000006669043
-    // 参考jsonp.js
+    // 参考 jsonp.js
   </script>
   <!-- callback=jsonp: 回调名 -->
   <script src="http://www.abc.com/?data=name&callback=jsonp" charset="utf-8"></script>
   <!-- 服务器 -->
   <script type="text/javascript">
     // jsonp({
-    //     data: {
-    //
-    //     },
+    //   data: {}
     // });
   </script>
   <script type="text/javascript">
@@ -31,6 +29,7 @@
 
     /**
      * jsonp 实现, 参考 jsonp.js
+     * 传递一个callback参数给跨域服务端，然后跨域服务端返回数据时会将这个callback参数作为函数名来包裹住json数据即可。
      */
 
     /**
@@ -41,7 +40,7 @@
     // 2. hash 方式发送字符串
     B.src = B.src + '#' + 'data';
     // 在 B 中的伪代码如下
-    window.onhashchange = function () {
+    window.onhashchange = function() {
       var data = window.location.hash;
     };
 
