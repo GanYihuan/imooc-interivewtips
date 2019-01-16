@@ -42,7 +42,7 @@
       float !== none
     -->
     <!-- BFC 是一个独立容器，外面元素不会影响里面元素 -->
-    <!-- BFC 取消垂直方向边距重叠 -->
+    <!-- BFC 取消垂直方向 margin 重叠 -->
     <!-- 边距重叠: p-2 下边距 20px, p-3 上边距 10px, 实际取 20px -->
     <section id="margin">
       <style>
@@ -57,7 +57,7 @@
         }
       </style>
       <p>1</p>
-      <!-- 增加父元素, 设置为 BFC, 取消垂直方向边距重叠 -->
+      <!-- 增加父元素, 设置为 BFC, 取消垂直方向 margin 重叠 -->
       <div style="overflow:hidden">
         <p>2</p>
       </div>

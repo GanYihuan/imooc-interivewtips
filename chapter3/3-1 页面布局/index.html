@@ -17,7 +17,7 @@
     </style>
   </head>
   <body>
-    <!-- 浮动布局: 兼容性强, 脱离文档流, 浮动问题 -->
+    <!-- 浮动布局: 兼容性强, 脱离文档流, 不脱离文档流, 浮动问题, 注意 html 书写顺序 left -> right -> center -->
     <section class="layout float">
       <style media="screen">
         .layout.float .left {
@@ -26,6 +26,8 @@
           background: red;
         }
         .layout.float .center {
+          /* margin-left: 300px;
+          margin-right: 300px; */
           background: yellow;
         }
         .layout.float .right {
