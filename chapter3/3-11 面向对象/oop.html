@@ -27,7 +27,10 @@
         Parent1.call(this) /* call & apply: 父级构造函数 this 指向子级实例 */
         this.type = 'child1'
       }
-      console.log(new Child1(), new Child1().say()) /* 缺点: Child1 没有 say(), 只实现部分继承 */
+      console.log(
+        new Child1(),
+        new Child1().say()
+      ) /* 缺点: Child1 没有 say(), 只实现部分继承 */
 
       /* 借助原型链实现继承 */
       function Parent2() {
@@ -44,10 +47,9 @@
       var s2 = new Child2()
       console.log(s1.play, s2.play) // [1,2,3] [1,2,3]
       s1.play.push(4)
-      console.log(s1.play, s2.play) // 缺点: s2: [1,2,3,4] 受到 s1 影响 // true
+      console.log(s1.play, s2.play) /* 组合继承, 弥补上面缺点 */ // 缺点: s2: [1,2,3,4] 受到 s1 影响 // true
       /* s1.__proto__ === s2.__proto__ */ /* 组合继承, 弥补上面缺点 */
 
-      /* 组合继承, 弥补上面缺点 */
       function Parent3() {
         this.name = 'parent3'
         this.play = [1, 2, 3]

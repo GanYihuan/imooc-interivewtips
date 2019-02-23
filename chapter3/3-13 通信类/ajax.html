@@ -1,88 +1,96 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>通信类</title>
-</head>
-<body>
-  <script type="text/javascript">
-    // 创建 ajax【参考网址】https://segmentfault.com/a/1190000006669043
-    // 参考 jsonp.js
-  </script>
-  <!-- callback=jsonp: 回调名 -->
-  <script src="http://www.abc.com/?data=name&callback=jsonp" charset="utf-8"></script>
-  <!-- 服务器 -->
-  <script type="text/javascript">
-    // jsonp({
-    //   data: {}
-    // });
-  </script>
-  <script type="text/javascript">
-    /**
-     * 跨域通信的几种方法
-     * 1. jsonp 工作原理，参考 jsonp.js
-     * 2. hash, 场景是当前页面 A 通过 iframe 或 frame 嵌入了跨域的页面 B
-     * 3. postMessage
-     * 4. Websocket [参考资料](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
-     * 5. CORS [参考资料](http://www.ruanyifeng.com/blog/2016/04/cors.html)
-     */
+  <head>
+    <meta charset="utf-8" />
+    <title>通信类</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // 创建 ajax【参考网址】https://segmentfault.com/a/1190000006669043
+      // 参考 jsonp.js
+    </script>
+    <!-- callback=jsonp: 回调名 -->
+    <script
+      src="http://www.abc.com/?data=name&callback=jsonp"
+      charset="utf-8"
+    ></script>
+    <!-- 服务器 -->
+    <script type="text/javascript">
+      // jsonp({
+      //   data: {}
+      // });
+    </script>
+    <script type="text/javascript">
+      /**
+       * 跨域通信的几种方法
+       * 1. jsonp 工作原理，参考 jsonp.js
+       * 2. hash, 场景是当前页面 A 通过 iframe 或 frame 嵌入了跨域的页面 B
+       * 3. postMessage
+       * 4. Websocket [参考资料](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
+       * 5. CORS [参考资料](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+       */
 
-    /**
-     * jsonp 实现, 参考 jsonp.js
-     * 传递一个callback参数给跨域服务端，然后跨域服务端返回数据时会将这个callback参数作为函数名来包裹住json数据即可。
-     */
+      /**
+       * jsonp 实现, 参考 jsonp.js
+       * 传递一个callback参数给跨域服务端，然后跨域服务端返回数据时会将这个callback参数作为函数名来包裹住json数据即可。
+       */
 
-    /**
-     * hash 实现: 在 A 中伪代码如下
-     */
-    // 1. 拿到 B 窗口
-    var B = document.getElementsByTagName('iframe');
-    // 2. hash 方式发送字符串
-    B.src = B.src + '#' + 'data';
-    // 在 B 中的伪代码如下
-    window.onhashchange = function() {
-      var data = window.location.hash;
-    };
+      /**
+       * hash 实现: 在 A 中伪代码如下
+       */
+      // 1. 拿到 B 窗口
+      var B = document.getElementsByTagName('iframe')
+      // 2. hash 方式发送字符串
+      B.src = B.src + '#' + 'data'
+      // 在 B 中的伪代码如下
+      window.onhashchange = function() {
+        var data = window.location.hash
+      }
 
-    /**
-     * postMessage 实现
-     */
-    // 1. 窗口 A(http:A.com) 向跨域的窗口 B(http:B.com) 发送信息
-    Bwindow.postMessage('data', 'http://B.com');
-    // 2. 在窗口 B 中监听
-    Awindow.addEventListener('message', function (event) {
-      console.log(event.origin); // 发送者源
-      console.log(event.source); // 引用 A 窗口对象
-      console.log(event.data); // 拿数据
-    }, false);
+      /**
+       * postMessage 实现
+       */
+      // 1. 窗口 A(http:A.com) 向跨域的窗口 B(http:B.com) 发送信息
+      Bwindow.postMessage('data', 'http://B.com')
+      // 2. 在窗口 B 中监听
+      Awindow.addEventListener(
+        'message',
+        function(event) {
+          console.log(event.origin) // 发送者源
+          console.log(event.source) // 引用 A 窗口对象
+          console.log(event.data) // 拿数据
+        },
+        false
+      )
 
-    /**
-     * Websocket 实现
-     */
-    // ws: 加密,  wss: 不加密
-    var ws = new WebSocket('wss://echo.websocket.org');
-    ws.onopen = function (evt) {
-      console.log('Connection open ...');
-      ws.send('Hello WebSockets!');
-    };
-    ws.onmessage = function (evt) {
-      console.log('Received Message: ', evt.data);
-      ws.close();
-    };
-    ws.onclose = function (evt) {
-      console.log('Connection closed.');
-    };
+      /**
+       * Websocket 实现
+       */
+      // ws: 加密,  wss: 不加密
+      var ws = new WebSocket('wss://echo.websocket.org')
+      ws.onopen = function(evt) {
+        console.log('Connection open ...')
+        ws.send('Hello WebSockets!')
+      }
+      ws.onmessage = function(evt) {
+        console.log('Received Message: ', evt.data)
+        ws.close()
+      }
+      ws.onclose = function(evt) {
+        console.log('Connection closed.')
+      }
 
-    /**
-     * CORS 实现
-     */
-    // url（必选），options（可选）
-    fetch('/some/url/', {
-      method: 'get',
-    }).then(function (response) {
-    }).catch(function (err) {
-      // 出错了，等价于 then 的第二个参数，但这样更好用更直观
-    });
-  </script>
-</body>
+      /**
+       * CORS 实现
+       */
+      // url（必选），options（可选）
+      fetch('/some/url/', {
+        method: 'get'
+      })
+        .then(function(response) {})
+        .catch(function(err) {
+          // 出错了，等价于 then 的第二个参数，但这样更好用更直观
+        })
+    </script>
+  </body>
 </html>
